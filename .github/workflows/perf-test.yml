@@ -16,13 +16,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 19
-          cache: 'npm'
+          cache: 'yarn'
 
-      - run: npm ci
+      - run: yarn install
 
-      - run: npm run lint
+      - run: yarn lint
 
-      - run: npm run prettier-check
+      - run: yarn prettier-check
 
       - name: Run performance testing script
         run: ./scripts/reassure-tests.sh
