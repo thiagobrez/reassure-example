@@ -15,19 +15,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: 'yarn'
+          node-version: 19
+          cache: 'npm'
 
-      - run: yarn install --force
+      - run: npm install --force
 
-      - run: yarn lint
+      - run: npm run lint
 
-      - run: yarn prettier-check
+      - run: npm run prettier-check
 
       - name: Run performance testing script
         run: ./reassure-tests.sh
 
       - name: Run Danger.js
-        run: yarn danger ci
+        run: npm run danger-ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
