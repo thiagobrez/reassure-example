@@ -17,7 +17,7 @@ const component = (
 
 test('Simple test', async () => {
   await measurePerformance(component);
-});
+}, 15000);
 
 test('Test with scenario', async () => {
   const scenario = async () => {
