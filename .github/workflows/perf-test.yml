@@ -20,7 +20,7 @@ jobs:
 
       - run: yarn install --force
 
-      - name: Run performance testing script
+      - name: Run performance testing scripts
         run: ./reassure-tests.sh
 
       - name: Run Danger.js
