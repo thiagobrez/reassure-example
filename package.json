@@ -8,11 +8,19 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "prettier-check": "npx prettier --check ."
+    "perf-test": "reassure",
+    "prettier-check": "npx prettier --check .",
+    "danger-ci": "danger ci"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/native-stack": "^6.9.12",
+    "@testing-library/react-native": "^12.0.1",
     "react": "18.2.0",
-    "react-native": "0.71.5"
+    "react-native": "0.71.5",
+    "react-native-safe-area-context": "^4.5.0",
+    "react-native-screens": "^3.20.0",
+    "reassure": "^0.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -21,25 +29,28 @@
     "@callstack/eslint-config": "^13.0.2",
     "@react-native-community/eslint-config": "^3.2.0",
     "@testing-library/jest-native": "^5.4.2",
-    "@testing-library/react-native": "^12.0.1",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^29.2.1",
+    "@types/node": "^18.15.11",
     "@types/react": "^18.0.24",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
+    "danger": "^11.2.4",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "jest": "^29.2.1",
     "metro-react-native-babel-preset": "0.73.9",
     "prettier": "2.8.7",
     "react-test-renderer": "18.2.0",
-    "reassure": "^0.7.2",
     "typescript": "4.8.4"
   },
   "jest": {
     "preset": "react-native",
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)"
     ]
   }
 }
