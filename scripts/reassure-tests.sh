@@ -8,10 +8,10 @@ git fetch origin
 
 # Gather baseline perf measurements
 git switch "$BASELINE_BRANCH"
-npm install --force
-npm run perf-test -- --baseline
+yarn install --force
+yarn reassure --baseline
 
 # Gather current perf measurements & compare results
 git switch --detach -
-npm install --force
-npm run perf-test
+yarn install --force
+yarn reassure

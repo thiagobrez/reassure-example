@@ -28,6 +28,6 @@ jobs:
         run: ./scripts/reassure-tests.sh
 
       - name: Run Danger.js
-        run: npm run danger-ci
+        run: yarn danger ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
