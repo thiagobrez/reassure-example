@@ -1,9 +1,6 @@
 name: perf-test
 
-on:
-  push:
-    branches-ignore:
-      - 'main'
+on: push
 
 jobs:
   perf-test:
