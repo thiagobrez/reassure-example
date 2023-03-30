@@ -1,0 +1,29 @@
+name: perf-test
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+
+jobs:
+  perf-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+          cache: 'yarn'
+
+      - run: yarn install --force
+
+      - name: Run performance testing script
+        run: ./reassure-tests.sh
+
+      - name: Run Danger.js
+        run: yarn danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
