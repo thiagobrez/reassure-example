@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+echo "===== WORKING DIR: $PWD"
+
 BASELINE_BRANCH=${BASELINE_BRANCH:="main"}
 
 # Required for `git switch` on CI
