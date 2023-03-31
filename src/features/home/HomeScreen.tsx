@@ -1,7 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
-import {FlatList, StyleSheet, Text, TouchableHighlight} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 import {RootStackParamList} from '../../../App';
 
 type ItemProps = {title: string};
@@ -26,26 +32,56 @@ const Item = ({title}: ItemProps) => {
       accessibilityRole="button"
       style={styles.item}
       onPress={() => navigation.navigate('Details', {title})}>
-      <Text style={styles.title}>{title}</Text>
+      <>
+        <Image
+          accessibilityIgnoresInvertColors
+          style={styles.tinyLogo}
+          source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
+        />
+        <Text style={styles.title}>{title}</Text>
+      </>
     </TouchableHighlight>
   );
 };
 
 function HomeScreen() {
-  return (
-    <FlatList
-      data={DATA}
-      renderItem={({item}) => <Item title={item.title} />}
-      keyExtractor={item => item.id}
-    />
-  );
+  const [count, setCount] = useState(1);
+
+  // This is intentional to increase one render count
+  // and see the results in the Reassure report
+  useEffect(() => {
+    setTimeout(() => {
+      setCount(prevState => prevState + 1);
+    }, 0);
+  }, []);
+
+  if (count >= 1) {
+    return (
+      <FlatList
+        data={DATA}
+        renderItem={({item}) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      />
+    );
+  }
+
+  return null;
 }
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: theme.colors.gray,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
     padding: 20,
     marginVertical: 8,
+    backgroundColor: theme.colors.gray,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
   },
   title: {
     fontSize: 32,
